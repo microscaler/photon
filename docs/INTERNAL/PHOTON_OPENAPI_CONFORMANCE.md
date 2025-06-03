@@ -19,7 +19,7 @@ To ensure that all OpenAPI documents used in Photon-powered projects are consist
 
 ### ✅ Paths
 - Every path must:
-    - Have at least one valid HTTP method (get, post, etc.)
+    - Have at least one valid HTTP method (`get`, `post`, etc.)
     - Define a unique `operationId`
     - Include a `summary` or `description`
     - Include at least one valid `response`
@@ -32,8 +32,12 @@ To ensure that all OpenAPI documents used in Photon-powered projects are consist
 - No untyped properties or anonymous schema blocks
 
 ### ✅ Parameters
-- Must declare `name`, `in`, and `schema.type`
-- No mixed location ambiguity (`query`, `path`, `header`) 
+- Required for any templated path (`/users/{id}`)
+- Must include:
+    - `name`: matches path segment
+    - `in`: `"path"`, `"query"`, or `"header"`
+    - `schema.type`: valid OpenAPI primitive
+- No unnamed or schemaless parameters
 
 ### ✅ RequestBodies
 - Must use `$ref` to a schema in `components.schemas`
@@ -41,32 +45,53 @@ To ensure that all OpenAPI documents used in Photon-powered projects are consist
 
 ### ✅ Responses
 - Must declare `description` and `content` per status code
-- Must include a `200` or `201` response with schema
+- Must include a `200` or `201` response with a schema
+- **All schemas in responses must include type bounds**:
+    - `array`: `minItems`, `maxItems`
+    - `object`: `minProperties`, `maxProperties`
+    - `string`: `minLength`, `maxLength`
+    - `number` / `integer`: `minimum`, `maximum`
+    - `enum`: defined `enum` list
+    - `date` / `date-time`: `format` present
 
 ### ✅ Tags
 - Use PascalCase or kebab-case (`UserAuth`, `BlogPosts`)
 - All paths must include at least one tag
 
+### ✅ Authentication (Security)
+- Must define at least one security scheme under `components.securitySchemes`
+- Acceptable types:
+    - `http` (basic or bearer)
+    - `apiKey`
+- All operations must:
+    - Inherit security from root, or
+    - Override with a specific `security` declaration
+
 ---
 
 ## 💡 Photon-Specific Conventions
 
-- `operationId` must be camelCase and unique across project
-- Route paths must match model-based structure (`/users/{id}`)
-- Schema names must match PascalCase `Model` names
-- CRUD endpoints must follow canonical operations:
+- `operationId`: must be camelCase and globally unique
+- Paths must follow model/resource structure: `/users`, `/users/{id}`
+- Schema names = PascalCase matching model name
+- Canonical CRUD `operationId` forms:
     - `getUsers`, `getUser`, `createUser`, `updateUser`, `deleteUser`
-- Input schema = request body
-- Output schema = `200` response
+- Request body schema = input
+- `200` response schema = output
 
 ---
 
 ## 🧪 Validation Strategy
 
-- Built into `photon openapi navigate` and `photon dev`
-- Uses `openapiv3` parser + custom Photon rule engine
-- Errors displayed in interactive CLI wizard
-- Optionally backed by AI assist to fix
+- Implemented in:
+    - `photon openapi navigate`
+    - `photon dev`
+- Uses `openapiv3` + Photon rule engine
+- CLI presents:
+    - Errors with path/line context
+    - AI-assisted fix suggestions (if enabled)
+- Validated before codegen, deploy, test generation
+
 
 ---
 
