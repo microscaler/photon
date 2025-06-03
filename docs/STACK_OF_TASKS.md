@@ -1,6 +1,3 @@
-Here is the current `STACK_OF_TASKS.md` ready to commit:
-
-```markdown
 # 🗂️ Stack of Next Tasks (Organized by Roadmap Phase)
 
 A prioritized and categorized backlog of tasks to drive Photon development across CLI, SaaS, and infrastructure components.
@@ -49,35 +46,101 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
 
 ---
 
-## 🧰 Infra / Ops / Support Tools
+## 🛠️ photon-engine Template System (Phase 1.5 Planning)
 
-- [ ] Write Medium blog post: *Markdown-First AI — Supercharging ChatGPT for Developer Velocity*
-- [ ] Draft `README.md` or `gist.md` for public release of Markdown-First AI concept
-- [x] Define `photon.toml` config schema
-- [ ] GitHub Actions deploy template
-- [ ] Bootstrap GCP project with Crossplane/Upbound
+- [x] Define high-level implementation plan for photon-engine crate (entrypoints, output, error handling)
+
+### 🔨 Build Logic Extensions
+
+- [x] Define how `build hooks` (pre/post) are declared in `photon.toml`
+- [x] Implement build hook execution strategy in CLI ✅ `PHOTON_BUILD_HOOKS_EXECUTION.md` finalized
+- [ ] Support build output formats: `--format zip`, `--format dir`, `--format docker`
+- [ ] Add support for alternate build targets:
+    - Docker image
+    - WASM builds
+    - Static frontend bundle only
+
+### 🚀 Build Infrastructure Strategy
+
+- [ ] Determine default build strategy for local CLI
+- [ ] Design GitHub Actions workflow template for Photon projects
+- [ ] Define CloudBuild configuration for SaaS deploys
+
+### 🧩 Post-Build Integration Design
+
+- [ ] Plan artifact publishing (e.g., GitHub Releases, OCI containers)
+- [ ] Add notification hooks (Slack, Email, Webhook)
+- [ ] Explore IDE integration (e.g., VS Code status bar, tasks, LSP events)
+
+### 📈 Future Build Enhancements
+
+- [ ] Plan build output caching strategy (hash-based)
+- [ ] Add build reports (duration, size, diff summary)
+- [ ] Support matrix builds for multi-arch via CI
 
 ---
 
-## 🛠️ photon-engine Template System (Phase 1.5 Planning)
+## 🎯 Deployment Target Support
 
-- [ ] Define engine logic architecture and execution strategy
-- [ ] Scaffold `photon-engine` crate structure (lib.rs, context.rs, dispatcher.rs)
-- [ ] Design file output strategy (dry-run, overwrite-safe)
-- [ ] Build engine dispatcher (template mapping, conditional logic)
-- [ ] Write `generate_model_files()` entry point using context API
-- [ ] Define template registration mechanism for Askama
-- [ ] Plan unit + integration testing strategy for file rendering
+### Kubernetes Deployment Targets
 
-- [ ] Support user-supplied OpenAPI specs via `--openapi path/to/spec.yaml`
-- [ ] Sanitize and normalize imported OpenAPI documents
-- [ ] Guide user through interactive validation and correction to ensure:
-  - OpenAPI version is 3.1+
-  - Schema components are named, typed, and referenced correctly
-  - Path objects contain valid operation objects and responses
-  - Photon conventions are met (e.g., operationId, tag formatting, consistent naming)
-- [ ] Emit a Photon-conformant `openapi.yaml` with a backup of the original
-- [ ] Implement Photon OpenAPI rule engine
-```
+#### Local Dev (Kind/k3s + Tilt)
 
-You can now paste and commit this as the authoritative `STACK_OF_TASKS.md`. Ready for next focus area?
+- [x] Spec Tilt dev flow for Photon ✅ `PHOTON_K8S_TILT_DEV.md` committed
+- [x] Design `Tiltfile` template ✅ `PHOTON_K8S_TILTFILE_TEMPLATE.md` committed
+- [x] Document prerequisites and install flow ✅ `PHOTON_K8S_PREREQS_AND_SETUP.md` committed
+- [x] Define `.env` for secrets and profiles ✅ `PHOTON_ENV_DESIGN.md` committed
+- [x] Define `.tiltignore` for excluding local dev files ✅ `PHOTON_TILTIGNORE.md` committed
+- [ ] Plan `photon dev --target tilt` integration
+- [ ] Support auto-reload for frontend/backend during `photon dev`
+- [ ] Generate Kind-compatible K8s manifests
+- [ ] Enable debugging and log capture
+
+#### Remote Clusters (GKE, EKS, etc)
+
+- [ ] Create base Helm chart for Photon apps
+- [ ] Allow `photon deploy --target k8s` to select remote vs local
+- [ ] Handle secrets via SecretManager or sealed-secrets
+- [ ] Add `kustomize` variant or overlays (optional)
+- [ ] Generate Kubernetes manifests: `Deployment`, `Service`, `Ingress`
+- [ ] Add CLI command: `photon deploy --target k8s`
+- [ ] Document Helm chart or raw YAML options
+
+### General Target Support
+
+- [x] Define supported deployment targets ✅ `PHOTON_DEPLOY_DOCKER_COMPOSE.md` committed
+- [ ] Add `--target` CLI flag for build/deploy commands
+- [x] Implement deploy strategy for:
+    - Docker Compose
+    - GitHub Pages
+    - Kubernetes
+
+---
+
+## 🧩 CLI & IDE Integration Enhancements
+
+- [ ] Design LSP or CLI protocol extension for build/test status
+- [ ] Implement VS Code tasks.json scaffold via `photon init`
+- [ ] Define CLI support for `photon status` or `photon watch`
+- [ ] Provide inline command help docs via `photon --help <command>`
+- [ ] Generate `.vscode/launch.json` and `.vscode/settings.json` for dev convenience
+
+---
+
+## 🧠 Phase 6 – AI Prompt Design
+
+- [ ] Define AI prompt schema and response contract
+- [ ] Plan integration with command dispatch and LLM API
+- [ ] Define context window + embedding use for spec-based prompting
+- [ ] Create fallback & retry strategy for prompt resolution
+
+---
+
+## 🧪 Phase 5 – Test Execution
+
+- [x] Finalize `PHOTON_TEST_STRATEGY.md` and CLI spec for test orchestration
+- [ ] Define Photon test strategy across CLI, backend, frontend, and pact
+- [ ] Implement `photon test` CLI command with unified test runner
+- [ ] Add test manifest discovery for `cargo test`, `vitest`, and `pact verify`
+- [ ] Design CI-friendly output (e.g. JUnit or JSON summaries)
+- [ ] Plan test filtering by tag, scope, or suite
