@@ -69,3 +69,4 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
     - Path objects contain valid operation objects and responses
     - Photon conventions are met (e.g., operationId, tag formatting, consistent naming)
 - [ ] Emit a Photon-conformant `openapi.yaml` with a backup of the original
+- [ ] Implement Photon OpenAPI rule engine
