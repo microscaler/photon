@@ -1,3 +1,6 @@
+Here is the current `STACK_OF_TASKS.md` ready to commit:
+
+```markdown
 # 🗂️ Stack of Next Tasks (Organized by Roadmap Phase)
 
 A prioritized and categorized backlog of tasks to drive Photon development across CLI, SaaS, and infrastructure components.
@@ -36,9 +39,13 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
 
 ## 🔬 Phase 4 – Pact Contracts
 
+- [ ] Finalize `PHOTON_PACT_STRATEGY.md` high-level integration
+- [ ] Specify CLI behavior for `generate-consumer` and `verify-provider`
 - [ ] Auto-generate Pact consumer contracts from OpenAPI
 - [ ] Implement Pact provider verifier harness
 - [ ] Scaffold test suite templates from response examples
+- [ ] Define implementation plan for Pact support (build, verify, CI integration)
+- [ ] Finalize `PHOTON_PACT_TEST_SCAFFOLD.md` and spec input/output behavior
 
 ---
 
@@ -46,7 +53,7 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
 
 - [ ] Write Medium blog post: *Markdown-First AI — Supercharging ChatGPT for Developer Velocity*
 - [ ] Draft `README.md` or `gist.md` for public release of Markdown-First AI concept
-- [ ] Define `photon.toml` config schema
+- [x] Define `photon.toml` config schema
 - [ ] GitHub Actions deploy template
 - [ ] Bootstrap GCP project with Crossplane/Upbound
 
@@ -54,6 +61,7 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
 
 ## 🛠️ photon-engine Template System (Phase 1.5 Planning)
 
+- [ ] Define engine logic architecture and execution strategy
 - [ ] Scaffold `photon-engine` crate structure (lib.rs, context.rs, dispatcher.rs)
 - [ ] Design file output strategy (dry-run, overwrite-safe)
 - [ ] Build engine dispatcher (template mapping, conditional logic)
@@ -64,9 +72,12 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
 - [ ] Support user-supplied OpenAPI specs via `--openapi path/to/spec.yaml`
 - [ ] Sanitize and normalize imported OpenAPI documents
 - [ ] Guide user through interactive validation and correction to ensure:
-    - OpenAPI version is 3.1+
-    - Schema components are named, typed, and referenced correctly
-    - Path objects contain valid operation objects and responses
-    - Photon conventions are met (e.g., operationId, tag formatting, consistent naming)
+  - OpenAPI version is 3.1+
+  - Schema components are named, typed, and referenced correctly
+  - Path objects contain valid operation objects and responses
+  - Photon conventions are met (e.g., operationId, tag formatting, consistent naming)
 - [ ] Emit a Photon-conformant `openapi.yaml` with a backup of the original
 - [ ] Implement Photon OpenAPI rule engine
+```
+
+You can now paste and commit this as the authoritative `STACK_OF_TASKS.md`. Ready for next focus area?
