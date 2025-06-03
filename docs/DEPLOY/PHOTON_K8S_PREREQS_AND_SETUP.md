@@ -10,15 +10,13 @@ To enable seamless local development of full-stack Photon apps using:
 ---
 
 ## 📦 Required Tools
-
-| Tool       | Description                             | Install Command                           |
-|------------|-----------------------------------------|-------------------------------------------|
-| Docker     | Container runtime for builds            | [Install Docker](https://docs.docker.com/get-docker/) |
-| Tilt       | Kubernetes live reload orchestrator     | `brew install tilt` or [tilt.dev](https://docs.tilt.dev/install.html) |
-| Kind       | Local Kubernetes using Docker           | `brew install kind` or `go install ...`   |
-| k3s        | Lightweight Kubernetes alternative      | `curl -sfL https://get.k3s.io | sh -`     |
-| kubectl    | Kubernetes CLI                          | `brew install kubectl`                    |
-
+| Tool       | Description                             | macOS Install Command                     | Linux (Debian) Install Command            | Windows (Chocolatey) Install Command      |
+|------------|-----------------------------------------|-------------------------------------------|-------------------------------------------|-------------------------------------------|
+| Docker     | Container runtime for builds            | [Install Docker](https://docs.docker.com/get-docker/) | `sudo apt-get install docker-ce`          | `choco install docker`                    |
+| Tilt       | Kubernetes live reload orchestrator     | `brew install tilt` or [tilt.dev](https://docs.tilt.dev/install.html) | `curl -fsSL https://github.com/tilt-dev/tilt/releases/latest/download/tilt-linux-amd64 -o /usr/local/bin/tilt && chmod +x /usr/local/bin/tilt` | `choco install tilt`                      |
+| Kind       | Local Kubernetes using Docker           | `brew install kind` or `go install ...`   | `curl -Lo ./kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64 && chmod +x ./kind && mv ./kind /usr/local/bin/kind` | `choco install kind`                      |
+| k3s        | Lightweight Kubernetes alternative      | `curl -sfL https://get.k3s.io | sh -`     | `curl -sfL https://get.k3s.io | sh -`     | Not available                             |
+| kubectl    | Kubernetes CLI                          | `brew install kubectl`                    | `sudo apt-get install kubectl`            | `choco install kubernetes-cli`            |
 ---
 
 ## 🗂️ Folder Structure
