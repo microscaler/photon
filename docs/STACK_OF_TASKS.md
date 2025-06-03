@@ -59,6 +59,8 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
     - Docker image
     - WASM builds
     - Static frontend bundle only
+- [ ] Define build logic for `photon build` command (api + ui bundling)
+- [ ] Design extensibility model for alternate build systems
 
 ### 🚀 Build Infrastructure Strategy
 
@@ -85,7 +87,6 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
 ### Kubernetes Deployment Targets
 
 #### Local Dev (Kind/k3s + Tilt)
-
 - [x] Spec Tilt dev flow for Photon ✅ `PHOTON_K8S_TILT_DEV.md` committed
 - [x] Design `Tiltfile` template ✅ `PHOTON_K8S_TILTFILE_TEMPLATE.md` committed
 - [x] Document prerequisites and install flow ✅ `PHOTON_K8S_PREREQS_AND_SETUP.md` committed
@@ -97,7 +98,6 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
 - [ ] Enable debugging and log capture
 
 #### Remote Clusters (GKE, EKS, etc)
-
 - [ ] Create base Helm chart for Photon apps
 - [ ] Allow `photon deploy --target k8s` to select remote vs local
 - [ ] Handle secrets via SecretManager or sealed-secrets
@@ -114,6 +114,12 @@ A prioritized and categorized backlog of tasks to drive Photon development acros
     - Docker Compose
     - GitHub Pages
     - Kubernetes
+    - Cloud Run
+    - App Engine
+    - Fly.io
+    - AWS Lambda
+    - Vercel / Netlify
+    - Cloudflare Workers
 
 ---
 
