@@ -1,0 +1,83 @@
+# 🧠 PHOTON_AI_PROMPT_TEMPLATES.md
+
+## 🧭 Objective
+
+Create reusable and consistent natural language prompt templates for AI command intents in Photon. These templates ensure predictable responses and align with Photon’s OpenAPI-first codegen strategy.
+
+---
+
+## 📘 Prompt Template: `suggest-path`
+
+**Use Case**: Generate OpenAPI path + operation from prompt
+
+```text
+You are a Rust backend developer. Write an OpenAPI 3.1 path object for a {method} request to `{path}`.
+The endpoint should {summary}. Use camelCase for operationId.
+Respond only with the OpenAPI-compliant JSON fragment for this path.
+
+Context:
+- Project: {project}
+- Models: {models}
+- Example fields: {example_fields}
+```
+
+Example prompt:
+```text
+Write an OpenAPI 3.1 path object for a POST /login that accepts email and password, and returns a JWT token.
+```
+
+---
+
+## 📘 Prompt Template: `generate-model`
+
+**Use Case**: Create OpenAPI schema + Rust struct
+
+```text
+Generate a Rust struct and OpenAPI component schema for a model named `{model_name}`.
+The model has fields: {fields}. Use `snake_case` for Rust fields and `camelCase` for JSON fields.
+Respond with a JSON object containing:
+- `rust_struct`
+- `openapi_schema`
+```
+
+Example:
+```text
+Generate a model for User with fields: name (string), email (email), created_at (timestamp)
+```
+
+---
+
+## 📘 Prompt Template: `doc-route`
+
+**Use Case**: Generate inline API documentation
+
+```text
+Write a summary and description for the OpenAPI operation:
+- Method: {method}
+- Path: {path}
+- Operation ID: {operationId}
+- Input: {request_fields}
+- Output: {response_fields}
+
+Return in Markdown format:
+- Summary
+- Description
+```
+
+---
+
+## 📘 Prompt Template: `refactor-schema`
+
+**Use Case**: Suggest schema simplification, normalization, or model split
+
+```text
+Given this OpenAPI schema, suggest how to refactor it into smaller components.
+Explain your decision. Output new schemas and mapping suggestions.
+
+Input Schema:
+{schema}
+```
+
+---
+
+Would you like this committed to `PHOTON_AI_PROMPT_TEMPLATES.md` and mark the stack item complete?
